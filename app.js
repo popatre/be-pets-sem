@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
-const { readFile, readdir } = require("fs/promises");
+const { readFile, readdir, writeFile } = require("fs/promises");
 
+app.use(express.json());
 app.set("port", process.env.PORT || 3000);
 
 app.get("/api/bands/:id", (req, res) => {
@@ -40,6 +41,28 @@ app.get("/api/songs", (req, res) => {
             } else {
                 res.status(200).send({ songs });
             }
+        });
+});
+
+app.patch("/api/bands/:id", (req, res) => {
+    const newYear = req.body.year;
+    const bandId = req.params.id;
+
+    readFile(`${__dirname}/data/bands/${bandId}.json`, "utf-8")
+        .then((fileContents) => {
+            const bandInfo = JSON.parse(fileContents);
+
+            bandInfo.yearFormed = newYear;
+
+            writeFile(
+                `${__dirname}/data/bands/${bandId}.json`,
+                JSON.stringify(bandInfo)
+            );
+
+            return bandInfo;
+        })
+        .then((bandInfo) => {
+            res.status(200).send({ band: bandInfo });
         });
 });
 
