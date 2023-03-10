@@ -2,7 +2,7 @@
 
 1. GET /bands/:id
 
--   responds with the relevant band's data
+    - responds with the relevant band's data
 
 2. GET /songs
 
