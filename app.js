@@ -3,7 +3,8 @@ const app = express();
 const { readFile, readdir, writeFile } = require("fs/promises");
 
 app.use(express.json());
-app.set("port", process.env.PORT || 3000);
+
+//Sem 1
 
 app.get("/api/bands/:id", (req, res) => {
     // getting the params
@@ -18,6 +19,8 @@ app.get("/api/bands/:id", (req, res) => {
         }
     );
 });
+
+//Sem 2
 
 app.get("/api/songs", (req, res) => {
     const genre = req.query.genre;
@@ -44,6 +47,8 @@ app.get("/api/songs", (req, res) => {
         });
 });
 
+//Sem 3
+
 app.patch("/api/bands/:id", (req, res) => {
     const newYear = req.body.year;
     const bandId = req.params.id;
@@ -66,6 +71,6 @@ app.patch("/api/bands/:id", (req, res) => {
         });
 });
 
-app.listen(app.get("port"), () => {
-    console.info(`Server listen on port ${app.get("port")}`);
+app.listen(3000, () => {
+    console.info(`Server listen on port 3000}`);
 });
