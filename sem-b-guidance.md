@@ -13,6 +13,9 @@ This guidance uses bands and songs data
 GET /songs
 
 -   responds with an array containing all of the songs.
+
+/api/songs?genre=pop
+
 -   This endpoint should accept a query of genre so that users can filter songs by their genre, e.g. GET /api/songs?genre=pop responds with an array containing all the songs with a genre of pop
 
 ---
