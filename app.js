@@ -34,10 +34,10 @@ app.get("/api/songs", (req, res) => {
             });
 
             if (genre) {
-                const requestedSongs = songs.filter((song) => {
+                const queriedSongs = songs.filter((song) => {
                     return song.genre === genre;
                 });
-                res.status(200).send({ songs: requestedSongs });
+                res.status(200).send({ songs: queriedSongs });
             } else {
                 res.status(200).send({ songs });
             }
